@@ -8,60 +8,34 @@ public class Breathing : Menu
         int counter = 0;
         
         Console.WriteLine("Ready?");
-        Console.WriteLine("3");
-        SleepCounter();
-        Console.WriteLine("2");
-        SleepCounter();
-        Console.WriteLine("1");
-        SleepCounter();
+        SleepCounter(3);
         Console.WriteLine("Lets begin");
 
 
-        do
+        do // I simplified the code here
         {
             Console.WriteLine("Breath in for 5 seconds");
-            Console.WriteLine("1");
-            SleepCounter();
-            Console.WriteLine("2");
-            SleepCounter();
-            Console.WriteLine("3");
-            SleepCounter();
-            Console.WriteLine("4");
-            SleepCounter();
-            Console.WriteLine("5");
-            SleepCounter();
+            SleepCounter(5);
 
             Console.WriteLine("Hold in for 5 seconds");
-            Console.WriteLine("1");
-            SleepCounter();
-            Console.WriteLine("2");
-            SleepCounter();
-            Console.WriteLine("3");
-            SleepCounter();
-            Console.WriteLine("4");
-            SleepCounter();
-            Console.WriteLine("5");
-            SleepCounter();
+            SleepCounter(5);
 
             Console.WriteLine("Breath out for 5 seconds");
-            Console.WriteLine("1");
-            SleepCounter();
-            Console.WriteLine("2");
-            SleepCounter();
-            Console.WriteLine("3");
-            SleepCounter();
-            Console.WriteLine("4");
-            SleepCounter();
-            Console.WriteLine("5");
-            SleepCounter();
+            SleepCounter(5);
 
             counter++;
         } while (counter < repititions);
     }
 
-    private void SleepCounter()
+    // Chat GPT explained to me the \b and what it means, its backspace, then I just have a simple for loop
+    private void SleepCounter(int seconds)
     {
-        Thread.Sleep(1000);
+        for (int i = seconds; i > 0; i--)
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b"); // Clears previous number
+        }
     }
     public void Caller(string defaultText, string activity, string defaultEndText)
     {   

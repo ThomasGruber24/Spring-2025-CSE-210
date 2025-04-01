@@ -34,15 +34,19 @@ public class Listing : Menu
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(duration);
 
+        Console.WriteLine("\nStart listing your answers. Press Enter after each one.");
         while (DateTime.Now < endTime)
-        {
-            string response = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(response))
             {
-                break; // Stop if the user presses Enter without input
+                if (Console.KeyAvailable)
+                {
+                    string response = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(response))
+                    {
+                        userResponses.Add(response);
+                    }
+                }
             }
-            userResponses.Add(response);
-        }
+
 
         Console.WriteLine($"\nYou listed {userResponses.Count} items!");
         Console.WriteLine("Thank you for participating in the Reflection Activity.");

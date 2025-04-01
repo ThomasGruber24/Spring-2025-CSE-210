@@ -25,16 +25,16 @@ public class Reflection : Menu
         LoadingAnimation(30);
 
         Console.WriteLine("Why did you think of this experiance?");
-        LoadingAnimation(8);
+        LoadingAnimation(8, "Thinking...");
 
         Console.WriteLine("How did this experiance start?");
-        LoadingAnimation(8);
+        LoadingAnimation(8, "Thinking...");
 
         Console.WriteLine("What did you learn about yourself?");
-        LoadingAnimation(8);
+        LoadingAnimation(8, "Thinking...");
 
         Console.WriteLine("Lastly, How can you keep this experience in mind in the future?");
-        LoadingAnimation(8);
+        LoadingAnimation(8, "Thinking...");
     }
     public void Caller(string defaultText, string activity, string defaultEndText)
     {   

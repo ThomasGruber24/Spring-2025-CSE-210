@@ -1,14 +1,14 @@
 public class Menu
 {
-    protected void LoadingAnimation(int input)
+    protected void LoadingAnimation(int input, string message = "Now Loading")
     {
-        char[] spinner = {'-', '\\', '|', '/'};
+        char[] spinner = { '-', '\\', '|', '/' };
         DateTime endTime = DateTime.Now.AddSeconds(input);
 
-        Console.WriteLine("Now Loading Activity ");
+        Console.Write(message + " ");
         while (DateTime.Now < endTime)
         {
-            foreach(char c in spinner)
+            foreach (char c in spinner)
             {
                 if (DateTime.Now >= endTime) break;
 
@@ -17,31 +17,30 @@ public class Menu
                 Console.Write("\b");
             }
         }
-    }
+        Console.WriteLine(); // Move to a new line after animation
+    }   
 
+    // I learned what switches are from well. ChatGPT, I like to think of it like a physical switch.
+    // It takes the input that is inserted into the switch and changes the veriable to that item. in this case string.
+    // As I continue I will use switches more often.
+
+    // Side note I knew you could write all in one line but that is really helpful in reducing code.
     protected void Sender(int selection)
     {
-        string activity = "";
-        string defaultText = $"You Selected {activity} actvity. ";
-        string defaultEndText = "Thank you for participating. Closing program now";
-        if (selection == 1)
+        string activity = selection switch
         {
-            activity = "breathing";
-            Breathing start = new Breathing();
-            start.Caller(defaultText, activity, defaultEndText);
-        }
-        else if (selection == 2)
-        {
-            activity = "reflection";
-            Reflection start = new Reflection();
-            start.Caller(defaultText, activity, defaultEndText);
-        }
-        else if (selection == 3)
-        {
-            activity = "listing";
-            Listing start = new Listing();
-            start.Caller(defaultText, activity, defaultEndText);
-        }
+            1 => "breathing",
+            2 => "reflection",
+            3 => "listing",
+            _ => "unknown"
+        };
+
+        string defaultText = $"You Selected the {activity} activity.";
+        string defaultEndText = "Thank you for participating. Closing program now.";
+
+        if (selection == 1) new Breathing().Caller(defaultText, activity, defaultEndText);
+        else if (selection == 2) new Reflection().Caller(defaultText, activity, defaultEndText);
+        else if (selection == 3) new Listing().Caller(defaultText, activity, defaultEndText);
 
         LoadingAnimation(3);
     }
