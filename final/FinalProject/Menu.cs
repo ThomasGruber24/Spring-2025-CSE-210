@@ -1,5 +1,6 @@
 public class Menu
 {
+    // This console program is to help modivate with ADHD. 
     public void entry()
     {
         Console.WriteLine("Please Select what you would like to do");
@@ -11,7 +12,7 @@ public class Menu
             selection(activity);
         }
     }
-    protected static void selection(activity)
+    protected static void selection(string activity)
     {
         Console.WriteLine($"Thank you for selecting {activity}, now launching");
         
