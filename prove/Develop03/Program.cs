@@ -14,7 +14,7 @@ class Program
         string scripture = text.Scripture();
 
         TextRemover challengeText = new TextRemover(scripture, memorizationDifficulty);
-        string challengeScripture = challengeText.RemoveRandomWords();
+        string challengeScripture = challengeText.ReturnDeletedText();
 
         Console.WriteLine("\nModified Text:");
         Console.WriteLine(challengeScripture);

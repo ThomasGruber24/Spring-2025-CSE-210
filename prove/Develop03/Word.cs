@@ -1,48 +1,62 @@
-using System;
-using System.Collections.Generic;
-public static class RandomHelper
-{
-    public static readonly Random Instance = new Random();
-}
-public class TextRemover
-{
-    private string text;
-    private int level;
+using System.Runtime.CompilerServices;
 
-    public TextRemover(string scripture, int difficulty)
+public class TextRemover(string scripture, int difficulty)
+{
+    private string scripture = scripture;
+    private int difficulty = difficulty;
+    public string ReturnDeletedText()
     {
-        text = scripture;
-        level = difficulty;
+        return RemoveText(scripture, difficulty);
     }
-
-    public string RemoveRandomWords()
+    private string RemoveText(string scripture, int difficulty)
     {
-        List<string> words = new List<string>(text.Split(new[] { ' ', '\t', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+        string editedScripture = scripture;
 
-        int wordsToRemove = GetWordsToRemove(words.Count);
-
-        for (int i = 0; i < wordsToRemove; i++)
+        if (difficulty == 1)
         {
-            if (words.Count > 0)
+            foreach (string word in scripture.Split(' '))
             {
-                int indexToRemove = RandomHelper.Instance.Next(words.Count);
-                words.RemoveAt(indexToRemove);
+                // This is something AI gave me to help with errors. IsNullOrWiteSpace is as it discribes if the word is puncuation it skips it
+                if (string.IsNullOrWhiteSpace(word)) continue;
+
+                if (word.Length <= 3)
+                {
+                    // AI helped me through this code (same with the other 3 spots)
+                    string replacement = string.Join(" ", new string('_', word.Length).ToCharArray());
+                    editedScripture = editedScripture.Replace(word, replacement);
+                }
+            }
+        }
+        else if (difficulty == 2)
+        {
+            int removed = 0;
+            foreach (string word in scripture.Split(' '))
+            {
+                if (string.IsNullOrWhiteSpace(word)) continue;
+
+                if (word.Length >= 4 && word.Length <= 6 && removed < 4)
+                {
+                    string replacement = string.Join(" ", new string('_', word.Length).ToCharArray());
+                    editedScripture = editedScripture.Replace(word, replacement);
+                    removed++;
+                }
+            }
+        }
+        else if (difficulty == 3)
+        {
+            foreach (string word in scripture.Split(' '))
+            {
+                if (string.IsNullOrWhiteSpace(word)) continue;
+
+                if (word.Length >= 4)
+                {
+                    string replacement = string.Join(" ", new string('_', word.Length).ToCharArray());
+                    editedScripture = editedScripture.Replace(word, replacement);
+                }
             }
         }
 
-        return string.Join(" ", words);
+        return editedScripture;
     }
 
-    private int GetWordsToRemove(int wordCount)
-    {
-        int result = level switch
-        {
-            1 => wordCount / 10,
-            2 => wordCount / 5,
-            3 => wordCount / 3,
-            _ => throw new ArgumentException("Invalid difficulty level")
-        };
-
-        return Math.Max(1, result); // Ensure at least one word is removed
-    }
 }
