@@ -2,6 +2,8 @@ public class Reflection : Menu
 {
     private void Activity()
     {
+        DisplayGenericText("Reflection");
+        LoadingAnimation(3);
         Console.WriteLine("This activiy will help you relflect on your life, you will have 30 seconds to think of an answer for the first question. Then you will have 8 for each following question");
         Random random = new Random();
         int ranSel = random.Next(0,3);

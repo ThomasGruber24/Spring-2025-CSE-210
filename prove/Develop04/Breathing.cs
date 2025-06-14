@@ -2,6 +2,8 @@ public class Breathing : Menu
 {
     private void Activity()
     {
+        DisplayGenericText("Breathing");
+        LoadingAnimation(3);
         Console.WriteLine("This activity will walk you through breathing steps follow the instructions below. Follow instructions below");
         Console.WriteLine("How many times would you like to go through these steps: ");
         int repititions = int.Parse(Console.ReadLine());

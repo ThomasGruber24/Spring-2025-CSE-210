@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class Menu
 {
     protected void LoadingAnimation(int input, string message = "Now Loading")
@@ -18,7 +20,7 @@ public class Menu
             }
         }
         Console.WriteLine(); // Move to a new line after animation
-    }   
+    }
 
     // I learned what switches are from well. ChatGPT, I like to think of it like a physical switch.
     // It takes the input that is inserted into the switch and changes the veriable to that item. in this case string.
@@ -48,6 +50,11 @@ public class Menu
     public void CallSender(int selection)
     {
         Sender(selection);
+    }
+
+    protected void DisplayGenericText(string activity)
+    {
+        Console.WriteLine($"Welcome to {activity}.");
     }
 
 }

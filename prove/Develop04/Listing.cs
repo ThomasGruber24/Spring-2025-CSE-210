@@ -3,6 +3,8 @@ public class Listing : Menu
 {
     private void Activity()
     {
+        DisplayGenericText("Listing");
+        LoadingAnimation(3);
         Console.WriteLine("This will help you make a list of a few different things that mean a lot to you.");
         Console.WriteLine("You will have 1 minute to write the list");
 
